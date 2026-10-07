@@ -1,0 +1,223 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tech VA for GoHighLevel: live demo | Johnny Bodegas</title>
+<meta name="description" content="An AI tech VA that makes GoHighLevel sub-account changes from plain-English requests, with approvals, read-back checks and a job log. Interactive demo.">
+<style>
+:root{--bg:#0b1020;--card:#131a33;--card2:#0f1730;--line:#26305a;--ink:#e8ecf8;--mut:#9aa6c7;--acc:#5eead4;--acc2:#818cf8;--warn:#fbbf24;--bad:#f87171;--ok:#4ade80}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font:15px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink)}
+a{color:var(--acc)}.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:0;z-index:5;background:#0b1020e6;backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:54px}nav b{color:var(--acc)}nav a{margin-left:16px;text-decoration:none;color:var(--mut);font-size:14px}
+.hero{padding:56px 0 30px}.tag{color:var(--acc2);font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+h1{font-size:clamp(28px,4.6vw,46px);line-height:1.1;margin:.25em 0}.lead{color:var(--mut);font-size:18px;max-width:780px}
+.btn{display:inline-block;padding:11px 18px;border-radius:10px;background:var(--acc);color:#04201b;font-weight:700;text-decoration:none;border:0;cursor:pointer;font-size:15px}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}.btn.sm{padding:6px 12px;font-size:13px}.btn.bad{background:var(--bad);color:#2a0606}
+section{padding:26px 0}h2{font-size:22px;margin:0 0 12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}.card h3{margin:0 0 6px;font-size:16px;color:var(--acc)}
+.mut{color:var(--mut)}ul{margin:0;padding-left:18px}
+.banner{background:#3b2a05;border:1px solid #7c5a0b;color:#fde68a;border-radius:10px;padding:9px 14px;font-size:14px;margin-bottom:12px}
+.demo{display:grid;grid-template-columns:1.35fr 1fr;gap:14px}@media(max-width:860px){.demo{grid-template-columns:1fr}}
+.ex{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.ex button{background:#1b2550;color:var(--ink);border:1px solid var(--line);border-radius:99px;padding:6px 12px;font-size:13px;cursor:pointer}.ex button:hover{border-color:var(--acc)}
+.ask{display:flex;gap:8px}.ask input{flex:1;min-width:0;padding:11px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card2);color:var(--ink);font-size:15px}
+#feed{margin-top:12px;display:flex;flex-direction:column;gap:10px;max-height:640px;overflow:auto;padding-right:4px}
+.msg{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px}.msg.you{border-color:#3a4aa0;background:#18204a}
+.who{font-size:12px;color:var(--mut);margin-bottom:4px;text-transform:uppercase;letter-spacing:.05em}
+.steps{list-style:none;padding:0;margin:6px 0 0}.steps li{padding:5px 0 5px 26px;position:relative;font-size:14px;opacity:0;transform:translateY(4px);transition:.25s}.steps li.on{opacity:1;transform:none}
+.steps li:before{content:attr(data-i);position:absolute;left:0;top:5px;width:19px;height:19px;border-radius:50%;background:#22306a;color:var(--acc);font-size:11px;display:grid;place-items:center;font-weight:700}
+.pill{display:inline-block;font-size:12px;font-weight:700;padding:2px 9px;border-radius:99px}.r{background:#0e3a35;color:var(--acc)}.t1{background:#14365a;color:#93c5fd}.t2{background:#4a3407;color:var(--warn)}
+.approval{border:1px dashed var(--warn);border-radius:10px;padding:10px;margin-top:8px;background:#1d1708}
+.diff{font:12.5px/1.45 ui-monospace,Menlo,monospace;background:#070b18;border-radius:8px;padding:8px;margin-top:6px;white-space:pre-wrap}.diff .a{color:var(--ok)}.diff .d{color:var(--bad)}.diff .k{color:var(--mut)}
+.chips button{margin:4px 6px 0 0}
+.state h3{margin:12px 0 4px;font-size:13px;color:var(--acc2);text-transform:uppercase;letter-spacing:.05em}.state h3:first-child{margin-top:0}
+.kv{display:flex;justify-content:space-between;font-size:13.5px;border-bottom:1px solid #1d2549;padding:3px 0}.kv span:last-child{color:var(--ink);text-align:right}
+.flash{animation:fl 1.4s}@keyframes fl{0%{background:#5eead455}100%{background:transparent}}
+table{width:100%;border-collapse:collapse;font-size:13px}td,th{padding:5px 6px;border-bottom:1px solid #1d2549;text-align:left}th{color:var(--mut);font-weight:600}
+.flow{display:flex;flex-wrap:wrap;gap:8px}.step{flex:1 1 150px;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:10px;font-size:14px}.step b{display:block;color:var(--acc)}
+footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--mut);font-size:14px}
+</style></head><body>
+<nav><div class="wrap"><b>Tech VA · GHL</b><div><a href="#demo">Live demo</a><a href="#how">How it works</a><a href="#contact">Contact</a></div></div></nav>
+<header class="hero"><div class="wrap">
+<div class="tag">AI automation · GoHighLevel · Portfolio project</div>
+<h1>An AI tech VA that makes GoHighLevel changes from plain English, and checks its own work.</h1>
+<p class="lead">Ask in plain words: "block Friday", "turn off the AI setter for SMS", "move the account to Pacific time". The agent picks the right operation, asks a question when something's unclear, waits for your approval on anything sensitive, makes the change, reads it back to confirm, and logs the job.</p>
+<p style="margin-top:20px"><a class="btn" href="#demo">Try the live demo</a> &nbsp;<a class="btn ghost" href="#contact">Hire us</a></p>
+<p class="mut" style="font-style:italic;margin-top:18px">My wife and I have run GoHighLevel hands-on for about 5 years. We built this to take repetitive sub-account tech work off our own plate. Client work is under NDA, so this demo shows the system, not client data.</p>
+</div></header>
+
+<section><div class="wrap grid">
+<div class="card"><h3>Why we built it</h3>Small GHL tech requests never stop: calendar hours, timezones, users, AI bot settings, FAQs, pipeline stages. Each one is quick, but they pile up, and a careless change on a live account means missed bookings or unanswered leads.</div>
+<div class="card"><h3>What it is</h3>A serverless agent that takes requests from Slack, a Monday.com ticket board or a chat API. It runs about 55 registered operations against the GoHighLevel API, each with its own risk tier.</div>
+<div class="card"><h3>What makes it safe</h3>A whitelist of operations, three risk tiers, human approval cards, a read-back check after every change, a guard that stops calendar edits from wiping other settings, and a job log with an ID for every change.</div>
+</div></section>
+
+<section id="demo"><div class="wrap">
+<h2>Live demo</h2>
+<div class="banner" id="demoBanner"><b>Demo mode:</b> simulated sub-account, no real GoHighLevel connection. Everything runs in your browser.</div>
+<div class="demo">
+<div class="card">
+<div class="ask"><input id="q" placeholder="Ask the Tech VA… e.g. Block Friday on the calendar" aria-label="Request"><button class="btn" id="send">Send</button></div>
+<div class="ex" id="examples"></div>
+<div id="feed"></div>
+</div>
+<div>
+<div class="card state" id="state"></div>
+<div class="card" style="margin-top:14px"><h3 style="margin:0 0 6px;color:var(--acc)">Job log</h3><table><thead><tr><th>Job</th><th>Operation</th><th>Tier</th><th>Status</th></tr></thead><tbody id="log"><tr><td colspan="4" class="mut">No jobs yet</td></tr></tbody></table></div>
+</div></div>
+<p class="mut" style="font-size:13px;margin-top:10px">In this demo, rule-based matching stands in for the LLM so it can run offline. The operations, tiers, approval flow, read-back and calendar guard follow the real system.</p>
+</div></section>
+
+<section id="how"><div class="wrap"><h2>How it works</h2>
+<div class="flow">
+<div class="step"><b>1 · Trigger</b>Slack mention, Monday update or new ticket (webhook plus a once-a-minute check), chat API, scheduled jobs</div>
+<div class="step"><b>2 · Understand</b>The LLM maps the request to exactly one registered operation, asks a clarifying question, or hands off to a person</div>
+<div class="step"><b>3 · Resolve</b>Acts only when it's certain which sub-account is meant</div>
+<div class="step"><b>4 · Gate</b>Read-only, routine or needs approval. Approvals happen with Slack buttons or a Monday status column</div>
+<div class="step"><b>5 · Apply + verify</b>GHL API with per-location OAuth tokens, then a read-back. The calendar guard diffs before and after and restores anything that moved</div>
+<div class="step"><b>6 · Log</b>Job ID, warehouse log, dashboard, and a reply in the thread</div>
+</div>
+<div class="grid" style="margin-top:14px">
+<div class="card"><h3>Safety and guardrails</h3><ul>
+<li>Only registered operations can run, never free-form API calls</li><li>Changes that grant access (users, notification recipients) need approval when they come from automated triage</li><li>When the account was matched by name or the request came from an AI chat, every change needs approval</li><li>Client replies are only ever drafts. A person sends them</li><li>Slack requests are signature-checked and write access can be limited to an allowlist. Webhooks are re-checked against the source before anything runs</li><li>Each event is claimed once, so a retried or late webhook never runs a change twice</li><li>Testing happens on a test sub-account, never the snapshot template</li></ul></div>
+<div class="card"><h3>Stack</h3><ul>
+<li>Cloudflare Workers, Durable Objects (background jobs up to 15 minutes), cron</li><li>Claude API for intent mapping and ticket triage</li><li>GoHighLevel API v2 through a Marketplace OAuth app</li><li>Slack Events and Interactivity, Monday.com GraphQL, Freshdesk</li><li>Supabase/Postgres for the job log</li><li>A regression suite for every release, with all outside calls mocked</li></ul></div>
+<div class="card"><h3>What it handles</h3><ul>
+<li>Calendars: hours, blocks, settings, team, holidays</li><li>Timezones: account, calendars, schedules, AI agents</li><li>Conversation AI: status, kill switch, channels, prompt, booking pathway</li><li>Contacts, users, knowledge-base FAQs, pipelines, custom values</li><li>Ticket triage, client-reply drafts, unanswered-message watch</li></ul></div>
+</div></div></section>
+
+<footer id="contact"><div class="wrap">
+<h2 style="color:var(--ink)">Built by Johnny Bodegas &amp; his wife</h2>
+<p>Want something like this for your GoHighLevel agency? <a class="btn sm" href="mailto:info@johnnybodegas.com">info@johnnybodegas.com</a> &nbsp; <a class="btn sm ghost" href="https://wa.me/639081875826" target="_blank" rel="noopener">WhatsApp</a></p>
+<p style="font-size:13px">Demo only: simulated data, no client information, no real API connections.</p>
+</div></footer>
+
+<script>
+// ---------- mock sub-account ----------
+const DAYS=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+const S={name:'Demo Business Co.',tz:'America/New_York',
+ cal:{name:'Main Booking Calendar',hours:{Mon:'9:00-17:00',Tue:'9:00-17:00',Wed:'9:00-17:00',Thu:'9:00-17:00',Fri:'9:00-17:00',Sat:'closed',Sun:'closed'},team:['Alex (Owner)','Sam (Front desk)'],blocks:[]},
+ ai:{setter:true,channels:{SMS:true,Facebook:true,Instagram:true,'Live chat':true}},
+ pipeline:['New lead','Contacted','Booked','Showed','Won'],
+ users:['Alex (Owner)','Sam (Front desk)'],faqs:['What are your hours?','Where are you located?']};
+let jobN=1000;const jobs=[];
+const TZ={pacific:'America/Los_Angeles',mountain:'America/Denver',central:'America/Chicago',eastern:'America/New_York',arizona:'America/Phoenix',manila:'Asia/Manila',london:'Europe/London'};
+const $=s=>document.querySelector(s);const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function renderState(flash){const kv=(k,v,id)=>`<div class="kv" data-k="${id||''}"><span class="mut">${k}</span><span>${v}</span></div>`;
+ $('#state').innerHTML=`<h3>Sub-account (simulated)</h3>${kv('Name',S.name)}${kv('Timezone',S.tz,'tz')}
+ <h3>${S.cal.name}</h3>${DAYS.map(d=>kv(d,S.cal.hours[d],'h'+d)).join('')}${kv('Team',S.cal.team.join(', '),'team')}${kv('Blocked time',S.cal.blocks.length?S.cal.blocks.join('; '):'none','blocks')}
+ <h3>Conversation AI setter</h3>${kv('Setter',S.ai.setter?'ON':'OFF','setter')}${Object.entries(S.ai.channels).map(([c,v])=>kv(c,v&&S.ai.setter?'answering':'off','ch'+c)).join('')}
+ <h3>Pipeline stages</h3>${kv('Stages',S.pipeline.join(' → '),'pipe')}<h3>Users</h3>${kv('Users',S.users.join(', '),'users')}<h3>Knowledge base FAQs</h3>${kv('FAQs',S.faqs.length+': '+S.faqs.join(' / '),'faqs')}`;
+ (flash||[]).forEach(k=>{const e=document.querySelector(`[data-k="${k}"]`);if(e)e.classList.add('flash')});}
+function renderLog(){$('#log').innerHTML=jobs.slice().reverse().map(j=>`<tr><td><b>${j.id}</b></td><td>${esc(j.op)}</td><td>${pill(j.tier)}</td><td>${j.status}</td></tr>`).join('')||'<tr><td colspan=4 class=mut>No jobs yet</td></tr>'}
+const pill=t=>t==='R'?'<span class="pill r">Read-only</span>':t===1?'<span class="pill t1">Routine</span>':'<span class="pill t2">Needs approval</span>';
+
+// ---------- operation registry (from the real bot, in plain English) ----------
+const OPS={
+ 'calendar.block_time':{tier:1,label:'Calendar: block time'},'calendar.unblock':{tier:1,label:'Calendar: remove a block'},
+ 'calendar.update_hours':{tier:1,label:'Calendar: update opening hours'},'calendar.list':{tier:'R',label:'Calendar: list calendars'},
+ 'calendar.assign_team':{tier:1,label:'Calendar: assign team member'},
+ 'ai.status_check':{tier:'R',label:'AI: status check'},'ai.turn_off':{tier:1,label:'AI: kill switch (turn AI off)'},
+ 'ai.setter_toggle':{tier:2,label:'AI setter: turn on/off'},'ai.setter_channels':{tier:2,label:'AI setter: change channels'},
+ 'location.set_timezone':{tier:2,label:'Account: set timezone'},'calendar.timezone_check':{tier:'R',label:'Timezone: check account & calendars'},
+ 'pipeline.list':{tier:'R',label:'Pipeline: list stages'},'pipeline.update_stages':{tier:2,label:'Pipeline: update stages'},
+ 'user.create':{tier:1,label:'Users: create user'},'user.remove':{tier:2,label:'Users: remove user'},'user.list':{tier:'R',label:'Users: list'},
+ 'kb.add_faq':{tier:2,label:'Knowledge base: add FAQ'},'kb.faqs':{tier:'R',label:'Knowledge base: list FAQs'},
+ 'ai.reply_check':{tier:'R',label:'AI: check for unanswered messages'},'ticket.triage':{tier:'R',label:'Ticket triage: sort every ask'}};
+const dayOf=t=>{const m=t.match(/\b(mon|tue|wed|thu|fri|sat|sun)[a-z]*/i);return m?m[1][0].toUpperCase()+m[1].slice(1,3).toLowerCase():null};
+const chanOf=t=>{const m=t.match(/\b(sms|text|facebook|fb|instagram|ig|live ?chat|chat widget)\b/i);if(!m)return null;const x=m[1].toLowerCase();return /sms|text/.test(x)?'SMS':/fb|face/.test(x)?'Facebook':/ig|insta/.test(x)?'Instagram':'Live chat'};
+const hoursOf=t=>{const m=t.match(/(\d{1,2})(?::(\d\d))?\s*(am|pm)?\s*(?:-|to|–)\s*(\d{1,2})(?::(\d\d))?\s*(am|pm)?/i);if(!m)return null;
+ const h=(a,mm,ap,end)=>{a=+a;if(ap){ap=ap.toLowerCase();if(ap==='pm'&&a<12)a+=12;if(ap==='am'&&a===12)a=0}else if(end&&a<=7)a+=12;return a+':'+(mm||'00')};return h(m[1],m[2],m[3])+'-'+h(m[4],m[5],m[6],1)};
+
+function triage(t){const s=t.toLowerCase();
+ if(/ticket|triage/.test(s))return{op:'ticket.triage'};
+ if(/unblock|remove (the )?block/.test(s)){const d=dayOf(t);return d?{op:'calendar.unblock',p:{day:d}}:{ask:'Which day should I unblock?',opts:DAYS.filter(d=>S.cal.blocks.some(b=>b.startsWith(d))).map(d=>'Unblock '+d)}}
+ if(/block/.test(s)){const d=dayOf(t);return d?{op:'calendar.block_time',p:{day:d}}:{ask:'Which day should I block on the calendar?',opts:['Block Friday','Block Saturday','Block Monday']}}
+ if(/hours|open/.test(s)&&!/status/.test(s)){const d=dayOf(t),h=/closed?/.test(s)?'closed':hoursOf(t);if(!d||!h)return{ask:'Which day, and what hours? Days you don\u2019t mention stay as they are.',opts:['Set Saturday hours 9am-1pm','Set Friday closed']};return{op:'calendar.update_hours',p:{day:d,hours:h}}}
+ if(/time ?zone/.test(s)){if(/check/.test(s))return{op:'calendar.timezone_check'};const k=Object.keys(TZ).find(k=>s.includes(k));return k?{op:'location.set_timezone',p:{tz:TZ[k]}}:{ask:'Which timezone should the account use?',opts:['Change account timezone to Pacific','Change account timezone to Central','Change account timezone to Eastern']}}
+ if(/status|is the (ai|bot)/.test(s))return{op:'ai.status_check'};
+ if(/(ai|bot|setter)/.test(s)&&/(off|on|stop|disable|enable|pause)/.test(s)){const on=/\b(on|enable)\b/.test(s)&&!/\boff\b/.test(s);const c=chanOf(t);
+  if(c)return{op:'ai.setter_channels',p:{channel:c,on}};if(/kill|everything|all|both|now|urgent/.test(s)&&!on)return{op:'ai.turn_off'};
+  if(/setter/.test(s))return{op:'ai.setter_toggle',p:{on}};return{ask:'Do you mean the kill switch (all AI off right away) or just one channel?',opts:['Kill switch: turn off all AI now','Turn off the AI setter for SMS','Turn off the AI setter for Facebook']}}
+ if(/unanswered|didn.?t reply|no reply|not repl/.test(s))return{op:'ai.reply_check'};
+ if(/stage|pipeline/.test(s)){if(/^(list|show)|\b(list|show) (me )?(the )?(stages|pipeline)/.test(s))return{op:'pipeline.list'};const m=t.match(/(?:called|named)\s+["“']?([A-Za-z][\w &-]{1,30}?)["”']?\s*(?:after\s+["“']?([\w &-]+?)["”']?)?$/i);
+  const name=m&&!/^(to|after|in)$/i.test(m[1])?m[1].trim():null;if(!name)return{ask:'What should the new stage be called, and where does it go?',opts:['Add a pipeline stage called No-show after Booked','Add a pipeline stage called Follow-up after Contacted']};
+  return{op:'pipeline.update_stages',p:{name,after:m[2]&&m[2].trim()}}}
+ if(/faq/.test(s)){if(/list|show/.test(s))return{op:'kb.faqs'};const m=t.match(/faq[:\s]+(.+)/i);return m&&m[1].length>5?{op:'kb.add_faq',p:{q:m[1].trim()}}:{ask:'What\u2019s the FAQ question to add?',opts:['Add FAQ: Do you offer weekend appointments?']}}
+ if(/remove|delete/.test(s)&&/user/.test(s)){const u=S.users.find(u=>s.includes(u.split(' ')[0].toLowerCase()));return u?{op:'user.remove',p:{user:u}}:{ask:'Which user should I remove?',opts:S.users.map(u=>'Remove user '+u.split(' ')[0])}}
+ if(/(add|create).*user|new user/.test(s)){const m=t.match(/user\s+(?:named\s+)?([A-Z][a-z]+)/)||t.match(/add\s+([A-Z][a-z]+)\s+as/);return m?{op:'user.create',p:{user:m[1]}}:{ask:'What\u2019s the new user\u2019s name?',opts:['Add user Jordan']}}
+ if(/list.*user|who has access/.test(s))return{op:'user.list'};
+ if(/calendar/.test(s)&&/list|show/.test(s))return{op:'calendar.list'};
+ return{handoff:true}}
+
+// ---------- feed rendering ----------
+function bubble(who,html,cls){const d=document.createElement('div');d.className='msg '+(cls||'');d.innerHTML=`<div class="who">${who}</div>${html}`;$('#feed').appendChild(d);d.scrollIntoView({block:'nearest',behavior:'smooth'});return d}
+async function steps(el,list){const ul=document.createElement('ul');ul.className="steps";el.appendChild(ul);el._n=el._n||1;for(const s of list){const li=document.createElement('li');li.dataset.i=el._n++;li.innerHTML=s;ul.appendChild(li);await sleep(FAST?0:260);li.classList.add('on')}}
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));let FAST=new URLSearchParams(location.search).has('fast');
+function newJob(op,tier,status){const j={id:'TV-'+(++jobN),op:OPS[op].label,tier,status};jobs.push(j);renderLog();return j}
+
+async function handle(text,ctx={}){if(!text.trim())return;bubble('You',esc(text),'you');const r=triage(text);const b=bubble('Tech VA','');
+ if(r.handoff){await steps(b,['Read the request','No registered operation matches, so it <b>hands off to a person</b> instead of guessing. Try one of the example requests.']);return}
+ if(r.ask){await steps(b,['Read the request','It\u2019s ambiguous, so it <b>asks a clarifying question</b> instead of guessing']);const q=document.createElement('div');q.className='approval';q.style.borderColor='var(--acc2)';q.style.background='#141a3d';
+  q.innerHTML=`<b>Question:</b> ${r.ask}<div class="chips">${r.opts.map(o=>`<button class="btn sm ghost" data-a="${esc(o)}">${esc(o)}</button>`).join('')}</div>`;b.appendChild(q);
+  q.querySelectorAll('button').forEach(x=>x.onclick=()=>{q.querySelectorAll('button').forEach(y=>y.disabled=true);handle(x.dataset.a)});return}
+ if(r.op==='ticket.triage')return ticketTriage(b);
+ const op=OPS[r.op],tier=ctx.tier||op.tier;
+ await steps(b,[`Mapped to the operation <b>${op.label}</b> <span class="mut">(${r.op})</span>`,`Sub-account: <b>${S.name}</b> (certain match)`,`Risk tier: ${pill(tier)}`]);
+ if(tier==='R'){const j=newJob(r.op,'R','done');await steps(b,[readOp(r.op,r.p),`Logged as <b>${j.id}</b>, no changes made`]);return}
+ const plan=preview(r.op,r.p);
+ if(tier===2){const j=newJob(r.op,2,'proposed');const c=document.createElement('div');c.className='approval';
+  c.innerHTML=`<b>Approval needed · ${j.id}</b><div class="mut" style="margin:4px 0">${plan}</div><button class="btn sm" data-x="ok">Approve</button> <button class="btn sm bad" data-x="no">Reject</button>`;b.appendChild(c);
+  c.querySelector('[data-x=ok]').onclick=async()=>{c.innerHTML=`<b>${j.id} approved</b>`;j.status='approved';renderLog();await apply(b,r,j)};
+  c.querySelector('[data-x=no]').onclick=()=>{c.innerHTML=`<b>${j.id} declined</b>. Nothing was changed.`;j.status='declined';renderLog()};return}
+ const j=newJob(r.op,1,'received');await steps(b,[`Plan: ${plan}`]);await apply(b,r,j)}
+
+function preview(op,p){switch(op){
+ case'calendar.block_time':return`Block all of ${p.day} on "${S.cal.name}"`;case'calendar.unblock':return`Remove the block on ${p.day}`;
+ case'calendar.update_hours':return`Set ${p.day} to ${p.hours}. The other six days are written back unchanged`;
+ case'ai.turn_off':return'Kill switch: turn the AI setter off on every channel';
+ case'ai.setter_channels':return`Turn the AI setter ${p.on?'on':'off'} for ${p.channel}. Other channels stay as they are`;
+ case'ai.setter_toggle':return`Turn the AI setter ${p.on?'ON':'OFF'}`;
+ case'location.set_timezone':return`Change account timezone ${S.tz} → ${p.tz}`;
+ case'pipeline.update_stages':return`Add stage "${p.name}"${p.after?' after "'+p.after+'"':' at the end'}`;
+ case'user.create':return`Create user ${p.user}`;case'user.remove':return`Remove user ${p.user}`;case'kb.add_faq':return`Add FAQ "${p.q}"`}return''}
+
+function readOp(op){switch(op){
+ case'ai.status_check':return`Setter is <b>${S.ai.setter?'ON':'OFF'}</b>. Answering on: ${Object.entries(S.ai.channels).filter(([,v])=>v&&S.ai.setter).map(([c])=>c).join(', ')||'none'}`;
+ case'calendar.timezone_check':return`Account timezone: <b>${S.tz}</b>. Calendar follows the account: OK`;
+ case'pipeline.list':return'Stages: '+S.pipeline.join(' → ');case'user.list':return'Users: '+S.users.join(', ');case'kb.faqs':return'FAQs: '+S.faqs.join(' / ');
+ case'calendar.list':return`1 calendar: ${S.cal.name} (team: ${S.cal.team.join(', ')})`;
+ case'ai.reply_check':return'Checked recent conversations: <b>1 inbound message with no AI reply</b> (simulated) in the last 24 hours. Flagged on the daily update for a person to look at'}}
+
+async function apply(b,r,j){const p=r.p||{},before=JSON.parse(JSON.stringify(S));let flash=[],diff='',verify='';
+ const calDiff=(b0)=>{const lines=[];DAYS.forEach(d=>{const o=b0.cal.hours[d],n=S.cal.hours[d];lines.push(o===n?`<span class="k">  ${d}  ${n}</span>`:`<span class="d">- ${d}  ${o}</span>\n<span class="a">+ ${d}  ${n}</span>`)});
+  lines.push(`<span class="k">  team  ${S.cal.team.join(', ')}</span>`);const bo=b0.cal.blocks.join('; ')||'none',bn=S.cal.blocks.join('; ')||'none';lines.push(bo===bn?`<span class="k">  blocks ${bn}</span>`:`<span class="d">- blocks ${bo}</span>\n<span class="a">+ blocks ${bn}</span>`);return lines.join('\n')};
+ switch(r.op){
+ case'calendar.block_time':S.cal.blocks.push(p.day+' all day');flash=['blocks'];break;
+ case'calendar.unblock':S.cal.blocks=S.cal.blocks.filter(x=>!x.startsWith(p.day));flash=['blocks'];break;
+ case'calendar.update_hours':S.cal.hours[p.day]=p.hours;flash=['h'+p.day];break;
+ case'ai.turn_off':S.ai.setter=false;flash=['setter',...Object.keys(S.ai.channels).map(c=>'ch'+c)];break;
+ case'ai.setter_channels':S.ai.channels[p.channel]=p.on;if(p.on)S.ai.setter=true;flash=['ch'+p.channel];break;
+ case'ai.setter_toggle':S.ai.setter=p.on;flash=['setter'];break;
+ case'location.set_timezone':S.tz=p.tz;flash=['tz'];break;
+ case'pipeline.update_stages':{const i=p.after?S.pipeline.findIndex(x=>x.toLowerCase()===p.after.toLowerCase()):-1;i>=0?S.pipeline.splice(i+1,0,p.name):S.pipeline.push(p.name);flash=['pipe'];break}
+ case'user.create':S.users.push(p.user);flash=['users'];break;case'user.remove':S.users=S.users.filter(u=>u!==p.user);flash=['users'];break;
+ case'kb.add_faq':S.faqs.push(p.q);flash=['faqs'];break}
+ const isCal=r.op.startsWith('calendar.');
+ if(isCal){// simulate the GHL quirk: a partial PUT clears openHours, then the guard restores them
+  diff=`<div class="mut" style="margin-top:6px">Calendar guard: GHL's partial update cleared the opening hours, so the guard compared the calendar after the write and <b>restored the untouched days and team</b>. Final diff:</div><div class="diff">${calDiff(before)}</div>`}
+ await steps(b,['Applied through the GoHighLevel API <span class="mut">(simulated)</span>']);if(diff)b.insertAdjacentHTML('beforeend',diff);
+ j.status='applied';renderLog();renderState(flash);
+ await steps(b,[`Read-back: re-read the sub-account and confirmed the change <b style="color:var(--ok)">✓ verified</b>`,`Logged as <b>${j.id}</b>: done`]);j.status='done';renderLog()}
+
+async function ticketTriage(b){const ticket='Hi team, can you please add Jordan as a user, change our Saturday hours to 9am-1pm, and check why the bot didn\u2019t reply to a lead last night? Thanks!';
+ await steps(b,['Mapped to <b>Ticket triage</b>: it reads the whole ticket and lists every ask',`Ticket: <i class="mut">"${ticket}"</i>`,'Client linked to the ticket: <b>Demo Business Co.</b> (certain match)']);
+ const asks=[{t:'Check for unanswered messages',op:'ai.reply_check',tier:'R',txt:'Check why the bot didn\u2019t reply'},{t:'Update Saturday hours',op:'calendar.update_hours',tier:1,txt:'Set Saturday hours 9am-1pm'},{t:'Create user Jordan',op:'user.create',tier:2,txt:'Add user Jordan',why:'grants access, so a person approves it'}];
+ b.insertAdjacentHTML('beforeend',`<div class="diff">${asks.map((a,i)=>`${i+1}. ${a.t}  [${a.tier==='R'?'read-only':a.tier===1?'routine':'needs approval: '+a.why}]`).join('\n')}</div>`);
+ await steps(b,['Runs the lookups and routine changes now, then the changes that need approval one at a time']);
+ for(const a of asks)await handle(a.txt,{tier:a.tier});
+ bubble('Tech VA','<b>Client reply draft</b> (a person reviews and sends it; the agent never sends client replies):<div class="diff">Hi! Your Saturday hours are now 9am-1pm, and we looked into the missed reply. Jordan\u2019s user access is with the team for approval. We\u2019ll confirm once it\u2019s done.</div>')}
+
+const EX=['Block Friday on the calendar','Turn off the AI setter for SMS','Change account timezone to Pacific','Add a pipeline stage','Triage this support ticket','Set Saturday hours 9am-1pm','Turn off the AI','Is the AI on?','Add FAQ: Do you offer weekend appointments?','Order pizza for the team'];
+$('#examples').innerHTML=EX.map(e=>`<button>${esc(e)}</button>`).join('');$('#examples').querySelectorAll('button').forEach(x=>x.onclick=()=>handle(x.textContent));
+$('#send').onclick=()=>{handle($('#q').value);$('#q').value=''};$('#q').onkeydown=e=>{if(e.key==='Enter')$('#send').click()};
+renderState();
+</script></body></html>
